@@ -27,7 +27,11 @@ Auth::routes();
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-    Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
     Route::get('/buyers', [BuyerController::class, 'index'])->name('buyers');
+
+
+    Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 });
